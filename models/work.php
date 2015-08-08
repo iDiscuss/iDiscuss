@@ -20,29 +20,29 @@ if (!defined('IN_ANWSION'))
 
 class work_class extends AWS_MODEL
 {
-	public function add_work_experience($uid, $start_year, $end_year, $company_name, $job_id)
+	public function add_work_experience($uid, $start_year, $end_year, $company_name, $college_id)
 	{
 		return $this->insert('work_experience', array(
 			'uid' => intval($uid),
 			'start_year' => intval($start_year),
 			'end_year' => intval($end_year),
 			'company_name' => htmlspecialchars($company_name),
-			'job_id' => intval($job_id),
+			'college_id' => intval($college_id),
 			'add_time' => time()
 		));
 	}
 
-	public function get_jobs_list()
+	public function get_colleges_list()
 	{
-		if ($jobs = $this->fetch_all('jobs', null, 'id ASC'))
+		if ($colleges = $this->fetch_all('colleges', null, 'id ASC'))
 		{
-			foreach ($jobs as $key => $val)
+			foreach ($colleges as $key => $val)
 			{
-				$job_list[$val['id']] = $val['job_name'];
+				$college_list[$val['id']] = $val['college_name'];
 			}
 		}
 
-		return $job_list;
+		return $college_list;
 	}
 
 	public function get_work_experience_list($uid)
@@ -65,20 +65,20 @@ class work_class extends AWS_MODEL
 		return $this->update('work_experience', $update_data, 'uid = ' . intval($uid) . ' AND work_id = ' . intval($work_id));
 	}
 
-	public function remove_job($job_id)
+	public function remove_college($college_id)
 	{
-		return $this->delete('jobs', 'id = ' . intval($job_id));
+		return $this->delete('colleges', 'id = ' . intval($college_id));
 	}
 
-	public function add_job($job_name)
+	public function add_college($college_name)
 	{
-		return $this->insert('jobs', array(
-			'job_name' => htmlspecialchars($job_name)
+		return $this->insert('colleges', array(
+			'college_name' => htmlspecialchars($college_name)
 		));
 	}
 
-	public function update_job($id, $data)
+	public function update_college($id, $data)
 	{
-		return $this->update('jobs', $data, 'id = ' . intval($id));
+		return $this->update('colleges', $data, 'id = ' . intval($id));
 	}
 }

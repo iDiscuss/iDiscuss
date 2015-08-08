@@ -74,9 +74,9 @@
 				<dl>
 					<dt><label><?php _e('职业'); ?>:</label></dt>
 					<dd>
-						<select name="job_id">
+						<select name="college_id">
 							<option value="0">--</option>
-							<?php echo H::display_options($this->job_list, $this->user_info['job_id']); ?>
+							<?php echo H::display_options($this->college_list, $this->user_info['college_id']); ?>
 						</select>
 					</dd>
 				</dl>
@@ -236,7 +236,7 @@
 							<td>
 								<select class="work">
 									<option value=""></option>
-									<?php echo H::display_options($this->job_list); ?>
+									<?php echo H::display_options($this->college_list); ?>
 								</select>
 							</td>
 							<td>

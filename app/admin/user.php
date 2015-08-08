@@ -103,9 +103,9 @@ class user extends AWS_ADMIN_CONTROLLER
             $where[] = 'reputation <= ' . intval($_GET['reputation_max']);
         }
 
-        if ($_GET['job_id'])
+        if ($_GET['college_id'])
         {
-            $where[] = 'job_id = ' . intval($_GET['job_id']);
+            $where[] = 'college_id = ' . intval($_GET['college_id']);
         }
 
         if ($_GET['province'])
@@ -142,7 +142,7 @@ class user extends AWS_ADMIN_CONTROLLER
 
         TPL::assign('mem_group', $this->model('account')->get_user_group_list(1));
         TPL::assign('system_group', $this->model('account')->get_user_group_list(0));
-        TPL::assign('job_list', $this->model('work')->get_jobs_list());
+        TPL::assign('college_list', $this->model('work')->get_colleges_list());
         TPL::assign('total_rows', $total_rows);
         TPL::assign('list', $user_list);
         TPL::assign('menu_list', $this->model('admin')->fetch_menu_list(402));
@@ -195,7 +195,7 @@ class user extends AWS_ADMIN_CONTROLLER
 
         $this->crumb(AWS_APP::lang()->_t('编辑用户资料'), "admin/user/edit/");
 
-        TPL::assign('job_list', $this->model('work')->get_jobs_list());
+        TPL::assign('college_list', $this->model('work')->get_colleges_list());
         TPL::assign('mem_group', $this->model('account')->get_user_group_by_id($user['reputation_group']));
         TPL::assign('system_group', $this->model('account')->get_user_group_list(0));
         TPL::assign('user', $user);
@@ -208,7 +208,7 @@ class user extends AWS_ADMIN_CONTROLLER
     {
         $this->crumb(AWS_APP::lang()->_t('添加用户'), "admin/user/list/user_add/");
 
-        TPL::assign('job_list', $this->model('work')->get_jobs_list());
+        TPL::assign('college_list', $this->model('work')->get_colleges_list());
 
         TPL::assign('menu_list', $this->model('admin')->fetch_menu_list(402));
 
@@ -225,14 +225,14 @@ class user extends AWS_ADMIN_CONTROLLER
         TPL::output('admin/user/invites');
     }
 
-    public function job_list_action()
+    public function college_list_action()
     {
-        TPL::assign('job_list', $this->model('work')->get_jobs_list());
+        TPL::assign('college_list', $this->model('work')->get_colleges_list());
 
-        $this->crumb(AWS_APP::lang()->_t('职位设置'), "admin/user/job_list/");
+        $this->crumb(AWS_APP::lang()->_t('职位设置'), "admin/user/college_list/");
 
         TPL::assign('menu_list', $this->model('admin')->fetch_menu_list(407));
-        TPL::output('admin/user/job_list');
+        TPL::output('admin/user/college_list');
     }
 
     public function verify_approval_list_action()

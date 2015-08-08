@@ -298,7 +298,7 @@ class weixin_class extends AWS_MODEL
 
                             break;
 
-                        case 'masssendjobfinish':
+                        case 'masssendcollegefinish':
                             $msg_id = $input_message['msgID'];
 
                             $msg_details = array(

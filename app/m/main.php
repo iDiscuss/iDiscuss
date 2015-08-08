@@ -745,9 +745,9 @@ class main extends AWS_CONTROLLER
 
 		$this->crumb(AWS_APP::lang()->_t('%s 的个人主页', $user['user_name']), '/m/people/' . $user['url_token']);
 
-		$job_info = $this->model('account')->get_jobs_by_id($user['job_id']);
+		$college_info = $this->model('account')->get_colleges_by_id($user['college_id']);
 
-		TPL::assign('job_name', $job_info['job_name']);
+		TPL::assign('college_name', $college_info['college_name']);
 
 		if ($user['weibo_visit'])
 		{

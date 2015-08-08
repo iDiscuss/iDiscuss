@@ -76,9 +76,9 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('user', $user);
 
-		$job_info = $this->model('account')->get_jobs_by_id($user['job_id']);
+		$college_info = $this->model('account')->get_colleges_by_id($user['college_id']);
 
-		TPL::assign('job_name', $job_info['job_name']);
+		TPL::assign('college_name', $college_info['college_name']);
 
 		if ($user['weibo_visit'])
 		{
@@ -90,13 +90,13 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('education_experience_list', $this->model('education')->get_education_experience_list($user['uid']));
 
-		$jobs_list = $this->model('work')->get_jobs_list();
+		$colleges_list = $this->model('work')->get_colleges_list();
 
 		if ($work_experience_list = $this->model('work')->get_work_experience_list($user['uid']))
 		{
 			foreach ($work_experience_list as $key => $val)
 			{
-				$work_experience_list[$key]['job_name'] = $jobs_list[$val['job_id']];
+				$work_experience_list[$key]['college_name'] = $colleges_list[$val['college_id']];
 			}
 		}
 

@@ -13,7 +13,7 @@ ALTER TABLE `[#DB_PREFIX#]users` CHANGE `birthday` `birthday` INT( 10 ) NULL DEF
 ALTER TABLE `[#DB_PREFIX#]users` DROP `country`;
 ALTER TABLE `[#DB_PREFIX#]users` CHANGE `province` `province` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省';
 ALTER TABLE `[#DB_PREFIX#]users` CHANGE `city` `city` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '市';
-ALTER TABLE `[#DB_PREFIX#]users` CHANGE `job_id` `job_id` INT( 10 ) NULL DEFAULT '0' COMMENT '职业ID';
+ALTER TABLE `[#DB_PREFIX#]users` CHANGE `college_id` `college_id` INT( 10 ) NULL DEFAULT '0' COMMENT '职业ID';
 ALTER TABLE `[#DB_PREFIX#]users` CHANGE `reg_time` `reg_time` INT( 10 ) NULL DEFAULT NULL COMMENT '注册时间';
 ALTER TABLE `[#DB_PREFIX#]users` CHANGE `online_time` `online_time` INT( 10 ) NULL DEFAULT '0' COMMENT '在线时间';
 ALTER TABLE `[#DB_PREFIX#]users` CHANGE `last_active` `last_active` INT( 10 ) NULL DEFAULT NULL COMMENT '最后活跃时间';

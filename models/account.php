@@ -107,20 +107,7 @@ class account_class extends AWS_MODEL
 
         return $this->fetch_one('users', 'uid', "email = '" . $this->quote($email) . "'");
     }
-/////////2015/8/4////////////////////////////////////
-    /**
-     * 检查学号是否已经存在
-     *  @param string
-     *  @return boolean
-     */
-    public function check_xuehao($xuehao)
-    {
-        if(! H::valid_xuehao($xuehao))
-        {
-            return TRUE;
-        }
-        return $this->fetch_one('user','uid',"xuehao = '" . $this->quote($xuehao) . "'")
-    }
+
     /**
      * 用户登录验证
      *
@@ -252,27 +239,6 @@ class account_class extends AWS_MODEL
         }
 
         if ($uid = $this->fetch_one('users', 'uid', "email = '" . $this->quote($email) . "'"))
-        {
-            return $this->get_user_info_by_uid($uid, $attrb, $cache_result);
-        }
-    }
-///////////////2015/8/4//////////////////////////////////////////////
-    /**
-     * 通过用户学号获取用户信息
-     *
-     * $cache_result 为是否缓存结果
-     *
-     * @param string
-     * @return array
-     */
-    public function get_user_info_by_xuehao($xuehao, $cache_result = true)
-    {
-        if (!$xuehao)
-        {
-            return false;
-        }
-
-        if ($uid = $this->fetch_one('users', 'uid', "xuehao = '" . $this->quote($xuehao) . "'"))
         {
             return $this->get_user_info_by_uid($uid, $attrb, $cache_result);
         }
@@ -583,59 +549,6 @@ class account_class extends AWS_MODEL
     }
 
     /**
-     * 插入用户数据2
-     *
-     * @param string
-     * @param string
-     * @param string
-     * @param int
-     * @param string
-     * @return int
-     */
-    public function insert_user2($user_name, $password, $xuehao = null, $sex = 0, $mobile = null)
-    {
-        if (!$user_name OR !$password)
-        {
-            return false;
-        }
-
-        if ($this->check_username($user_name))
-        {
-            return false;
-        }
-
-        if ($xuehao AND $user_info = $this->get_user_info_by_xuehao($xuehao, false))
-        {
-            return false;
-        }
-
-        $salt = fetch_salt(4);
-
-        if ($uid = $this->insert('users', array(
-            'user_name' => htmlspecialchars($user_name),
-            'password' => compile_password($password, $salt),
-            'salt' => $salt,
-            'xuehao' => htmlspecialchars($xuehao),
-            'sex' => intval($sex),
-            'mobile' => htmlspecialchars($mobile),
-            'reg_time' => time(),
-            'reg_ip' => ip2long(fetch_ip()),
-            'xuehao_settings' => serialize(get_setting('new_user_xuehao_setting'))
-        )))
-        {
-            $this->insert('users_attrib', array(
-                'uid' => $uid
-            ));
-
-            $this->update_notification_setting_fields(get_setting('new_user_notification_setting'), $uid);
-
-            //$this->model('search_fulltext')->push_index('user', $user_name, $uid);
-        }
-
-        return $uid;
-    }
-
-    /**
      * 注册用户
      *
      * @param string
@@ -646,41 +559,6 @@ class account_class extends AWS_MODEL
     public function user_register($user_name, $password = null, $email = null)
     {
         if ($uid = $this->insert_user($user_name, $password, $email))
-        {
-            if ($def_focus_uids_str = get_setting('def_focus_uids'))
-            {
-                $def_focus_uids = explode(',', $def_focus_uids_str);
-
-                foreach ($def_focus_uids as $key => $val)
-                {
-                    $this->model('follow')->user_follow_add($uid, $val);
-                }
-            }
-
-            $this->update('users', array(
-                'group_id' => 3,
-                'reputation_group' => 5,
-                'invitation_available' => get_setting('newer_invitation_num'),
-                'is_first_login' => 1
-            ), 'uid = ' . intval($uid));
-
-            $this->model('integral')->process($uid, 'REGISTER', get_setting('integral_system_config_register'), '初始资本');
-        }
-
-        return $uid;
-    }
-/////////////////////2015/8/4/////////////////////////////////////////////
-    /**
-     * 注册用户2
-     *
-     * @param string
-     * @param string
-     * @param string
-     * @return int
-     */
-    public function user_register2($user_name, $password = null, $xuehao = null)
-    {
-        if ($uid = $this->insert_user($user_name, $password, $xuehao))
         {
             if ($def_focus_uids_str = get_setting('def_focus_uids'))
             {
@@ -938,9 +816,9 @@ class account_class extends AWS_MODEL
 
     public function check_username_char($user_name)
     {
-        if (is_digits($user_name))
+        if (!is_digits($user_name) && strlen($user_name) != 11)
         {
-            return AWS_APP::lang()->_t('用户名不能为纯数字');
+            return AWS_APP::lang()->_t('用户名应为11位纯数字');
         }
 
         if (strstr($user_name, '-'))
@@ -1169,21 +1047,21 @@ class account_class extends AWS_MODEL
      * @param int
      * @return array
      */
-    public function get_jobs_by_id($id)
+    public function get_colleges_by_id($id)
     {
         if (!$id)
         {
             return false;
         }
 
-        static $jobs_info;
+        static $colleges_info;
 
-        if (!$jobs_info[$id])
+        if (!$colleges_info[$id])
         {
-            $jobs_info[$id] = $this->fetch_row('jobs', 'id = ' . intval($id));
+            $colleges_info[$id] = $this->fetch_row('colleges', 'id = ' . intval($id));
         }
 
-        return $jobs_info[$id];
+        return $colleges_info[$id];
     }
 
     /**

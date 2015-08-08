@@ -166,8 +166,8 @@
                         <div class="col-sm-5 col-xs-8">
                             <select name="category_id" class="form-control">
                                 <option value="0"></option>
-                                <?php foreach($this->job_list as $job_id => $job_name) { ?>
-                                    <option value="<?php echo $job_id; ?>"<?php if ($_GET['job_id'] == $job_id) { ?> selected="selected"<?php } ?>><?php echo $job_name; ?></option>
+                                <?php foreach($this->college_list as $college_id => $college_name) { ?>
+                                    <option value="<?php echo $college_id; ?>"<?php if ($_GET['college_id'] == $college_id) { ?> selected="selected"<?php } ?>><?php echo $college_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

@@ -1372,7 +1372,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
             $update_data['province'] = htmlspecialchars($_POST['province']);
             $update_data['city'] = htmlspecialchars($_POST['city']);
 
-            $update_data['job_id'] = intval($_POST['job_id']);
+            $update_data['college_id'] = intval($_POST['college_id']);
             $update_data['mobile'] = htmlspecialchars($_POST['mobile']);
 
             $update_data['sex'] = intval($_POST['sex']);
@@ -1490,55 +1490,55 @@ class ajax extends AWS_ADMIN_CONTROLLER
         H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('邀请已发送')));
     }
 
-    public function remove_job_action()
+    public function remove_college_action()
     {
-        $this->model('work')->remove_job($_POST['id']);
+        $this->model('work')->remove_college($_POST['id']);
 
         H::ajax_json_output(AWS_APP::RSM(null, 1, null));
     }
 
-    public function add_job_action()
+    public function add_college_action()
     {
-        if (!$_POST['jobs'])
+        if (!$_POST['colleges'])
         {
             H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请输入职位名称')));
         }
 
-        $job_list = array();
+        $college_list = array();
 
-        if ($job_list_tmp = explode("\n", $_POST['jobs']))
+        if ($college_list_tmp = explode("\n", $_POST['colleges']))
         {
-            foreach($job_list_tmp as $key => $job)
+            foreach($college_list_tmp as $key => $college)
             {
-                $job_name = trim(strtolower($job));
+                $college_name = trim(strtolower($college));
 
-                if ($job_name)
+                if ($college_name)
                 {
-                    $job_list[] = $job_name;
+                    $college_list[] = $college_name;
                 }
             }
         }
         else
         {
-            $job_list[] = $_POST['jobs'];
+            $college_list[] = $_POST['colleges'];
         }
 
-        foreach($job_list as $key => $val)
+        foreach($college_list as $key => $val)
         {
-            $this->model('work')->add_job($val);
+            $this->model('work')->add_college($val);
         }
 
         H::ajax_json_output(AWS_APP::RSM(null, 1, null));
     }
 
-    public function save_job_action()
+    public function save_college_action()
     {
-        if ($_POST['job_list'])
+        if ($_POST['college_list'])
         {
-            foreach($_POST['job_list'] as $key => $val)
+            foreach($_POST['college_list'] as $key => $val)
             {
-                $this->model('work')->update_job($key, array(
-                    'job_name' => $val,
+                $this->model('work')->update_college($key, array(
+                    'college_name' => $val,
                 ));
             }
         }

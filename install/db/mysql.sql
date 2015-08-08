@@ -290,9 +290,9 @@ CREATE TABLE `[#DB_PREFIX#]invitation` (
   KEY `active_status` (`active_status`)
 ) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8;
 
-CREATE TABLE `[#DB_PREFIX#]jobs` (
+CREATE TABLE `[#DB_PREFIX#]colleges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `job_name` varchar(64) DEFAULT NULL COMMENT '职位名',
+  `college_name` varchar(64) DEFAULT NULL COMMENT '职位名',
   PRIMARY KEY (`id`)
 ) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8;
 
@@ -725,7 +725,7 @@ CREATE TABLE `[#DB_PREFIX#]users` (
   `birthday` int(10) DEFAULT NULL COMMENT '生日',
   `province` varchar(64) DEFAULT NULL COMMENT '省',
   `city` varchar(64) DEFAULT NULL COMMENT '市',
-  `job_id` int(10) DEFAULT '0' COMMENT '职业ID',
+  `college_id` int(10) DEFAULT '0' COMMENT '职业ID',
   `reg_time` int(10) DEFAULT NULL COMMENT '注册时间',
   `reg_ip` bigint(12) DEFAULT NULL COMMENT '注册IP',
   `last_login` int(10) DEFAULT '0' COMMENT '最后登录时间',
@@ -1070,7 +1070,7 @@ CREATE TABLE `[#DB_PREFIX#]work_experience` (
   `start_year` int(11) DEFAULT NULL COMMENT '开始年份',
   `end_year` int(11) DEFAULT NULL COMMENT '结束年月',
   `company_name` varchar(64) DEFAULT NULL COMMENT '公司名',
-  `job_id` int(11) DEFAULT NULL COMMENT '职位ID',
+  `college_id` int(11) DEFAULT NULL COMMENT '职位ID',
   `add_time` int(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`work_id`),
   KEY `uid` (`uid`)
@@ -1297,45 +1297,28 @@ INSERT INTO `[#DB_PREFIX#]category`(`title`,`type`) VALUES
 INSERT INTO `[#DB_PREFIX#]nav_menu`(`title`,`description`,`type`,`type_id`) VALUES
 ('默认分类', '默认分类描述', 'category', 1);
 
-INSERT INTO `[#DB_PREFIX#]jobs` (`id`, `job_name`) VALUES
-(1, '销售'),
-(2, '市场/市场拓展/公关'),
-(3, '商务/采购/贸易'),
-(4, '计算机软、硬件/互联网/IT'),
-(5, '电子/半导体/仪表仪器'),
-(6, '通信技术'),
-(7, '客户服务/技术支持'),
-(8, '行政/后勤'),
-(9, '人力资源'),
-(10, '高级管理'),
-(11, '生产/加工/制造'),
-(12, '质控/安检'),
-(13, '工程机械'),
-(14, '技工'),
-(15, '财会/审计/统计'),
-(16, '金融/银行/保险/证券/投资'),
-(17, '建筑/房地产/装修/物业'),
-(18, '交通/仓储/物流'),
-(19, '普通劳动力/家政服务'),
-(20, '零售业'),
-(21, '教育/培训'),
-(22, '咨询/顾问'),
-(23, '学术/科研'),
-(24, '法律'),
-(25, '美术/设计/创意'),
-(26, '编辑/文案/传媒/影视/新闻'),
-(27, '酒店/餐饮/旅游/娱乐'),
-(28, '化工'),
-(29, '能源/矿产/地质勘查'),
-(30, '医疗/护理/保健/美容'),
-(31, '生物/制药/医疗器械'),
-(32, '翻译（口译与笔译）'),
-(33, '公务员'),
-(34, '环境科学/环保'),
-(35, '农/林/牧/渔业'),
-(36, '兼职/临时/培训生/储备干部'),
-(37, '在校学生'),
-(38, '其他');
+INSERT INTO `[#DB_PREFIX#]colleges` (`id`, `college_name`) VALUES
+(1, '信息工程学院'),
+(2, '机械工程学院'),
+(3, '生物工程学院'),
+(4, '法学院'),
+(5, '文学院'),
+(6, '美术学院'),
+(7, '数学与统计学院'),
+(8, '物理学院'),
+(9, '音乐学院'),
+(10, '建筑学院'),
+(11, '体育学院'),
+(12, '新闻传播学院'),
+(13, '管理工程学院'),
+(14, '教育学院'),
+(15, '化学科学学院'),
+(16, '电气学院'),
+(17, '信息管理学院'),
+(18, '软件学院'),
+(19, '外语学院'),
+(20, '历史学院'),
+(21, '其他');
 
 INSERT INTO `[#DB_PREFIX#]topic` (`topic_title`, `topic_description`) VALUES('默认话题', '默认话题');
 

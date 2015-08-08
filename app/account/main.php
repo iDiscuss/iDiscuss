@@ -177,7 +177,7 @@ class main extends AWS_CONTROLLER
 
 		$this->crumb(AWS_APP::lang()->_t('注册'), '/account/register/');
 
-		TPL::assign('job_list', $this->model('work')->get_jobs_list());
+		TPL::assign('college_list', $this->model('work')->get_colleges_list());
 
 		TPL::import_css('css/register.css');
 

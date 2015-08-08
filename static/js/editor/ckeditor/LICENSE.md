@@ -424,7 +424,7 @@ special circumstances.
 encourage the widest possible use of a certain library, so that it becomes
 a de-facto standard.  To achieve this, non-free programs must be
 allowed to use the library.  A more frequent case is that a free
-library does the same job as widely used non-free libraries.  In this
+library does the same college as widely used non-free libraries.  In this
 case, there is little to gain by limiting the free library to free
 software only, so we use the Lesser General Public License.
 

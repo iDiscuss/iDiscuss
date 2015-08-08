@@ -138,6 +138,10 @@ class ajax extends AWS_CONTROLLER
 			H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请填写正确的验证码')));
 		}
 
+		// 
+		// 身份验证添加处，留坑（验证策略：身份验证不通过在此跳转，不再继续执行）
+		// 
+
 		if (get_setting('ucenter_enabled') == 'Y')
 		{
 			$result = $this->model('ucenter')->register($_POST['user_name'], $_POST['password'], $_POST['email']);
@@ -174,9 +178,9 @@ class ajax extends AWS_CONTROLLER
 				$update_data['city'] = htmlspecialchars($_POST['city']);
 			}
 
-			if ($_POST['job_id'])
+			if ($_POST['college_id'])
 			{
-				$update_data['job_id'] = intval($_POST['job_id']);
+				$update_data['college_id'] = intval($_POST['college_id']);
 			}
 
 			$update_attrib_data['signature'] = htmlspecialchars($_POST['signature']);
@@ -354,7 +358,7 @@ class ajax extends AWS_CONTROLLER
 
 	public function welcome_message_template_action()
 	{
-		TPL::assign('job_list', $this->model('work')->get_jobs_list());
+		TPL::assign('college_list', $this->model('work')->get_colleges_list());
 
 		TPL::output('account/ajax/welcome_message_template');
 	}
@@ -756,7 +760,7 @@ class ajax extends AWS_CONTROLLER
 			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入公司名称')));
 		}
 
-		if (!$_POST['job_id'])
+		if (!$_POST['college_id'])
 		{
 			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请选择职位')));
 		}
@@ -776,7 +780,7 @@ class ajax extends AWS_CONTROLLER
 			$this->model('topic')->save_topic($_POST['company_name']);
 		}
 
-		$work_id = $this->model('work')->add_work_experience($this->user_id, $_POST['start_year'], $_POST['end_year'], $_POST['company_name'], $_POST['job_id']);
+		$work_id = $this->model('work')->add_work_experience($this->user_id, $_POST['start_year'], $_POST['end_year'], $_POST['company_name'], $_POST['college_id']);
 
 		if (!$this->model('integral')->fetch_log($this->user_id, 'UPDATE_WORK'))
 		{
@@ -846,7 +850,7 @@ class ajax extends AWS_CONTROLLER
 			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入公司名称')));
 		}
 
-		if (!$_POST['job_id'])
+		if (!$_POST['college_id'])
 		{
 			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请选择职位')));
 		}
@@ -856,7 +860,7 @@ class ajax extends AWS_CONTROLLER
 			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请选择工作时间')));
 		}
 
-		$update_data['job_id'] = intval($_POST['job_id']);
+		$update_data['college_id'] = intval($_POST['college_id']);
 		$update_data['company_name'] = htmlspecialchars($_POST['company_name']);
 
 		$update_data['start_year'] = intval($_POST['start_year']);
@@ -1022,7 +1026,7 @@ class ajax extends AWS_CONTROLLER
 			$update_attrib_data['signature'] = htmlspecialchars($_POST['signature']);
 		}
 
-		$update_data['job_id'] = intval($_POST['job_id']);
+		$update_data['college_id'] = intval($_POST['college_id']);
 
 		if ($_POST['signature'] AND !$this->model('integral')->fetch_log($this->user_id, 'UPDATE_SIGNATURE'))
 		{

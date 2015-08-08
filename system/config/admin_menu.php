@@ -121,7 +121,7 @@ $config[] = array(
         array(
             'id' => 407,
             'title' => AWS_APP::lang()->_t('职位设置'),
-            'url' => 'admin/user/job_list/'
+            'url' => 'admin/user/college_list/'
         )
     )
 );
@@ -293,7 +293,7 @@ $config[] = array(
 
 $config[] = array(
     'title' => AWS_APP::lang()->_t('工具'),
-    'cname' => 'job',
+    'cname' => 'college',
     'children' => array(
         array(
             'id' => 501,
