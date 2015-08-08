@@ -60,4 +60,14 @@
 	5、文章发表模块 @苏
 
   后续功能陆续增添！
->>>>>>> origin/master
+
+##安装使用说明
+
+  1、在有配置好的apache和mysql环境中安装，新建UPLOAD将项目所有文件放入其中，UPLOAD放入apache/htdocs目录下
+
+  2、在浏览器输入http://localhost/UPLOAD进入iDiscuss安装界面，按照提示安装，依次输入数据库用户名、密码、数据库名（idiscuss）(需要手动在mysql创建)、端口不需要填写、前缀zzu_下一步，完成
+
+  3、每次修改后不成功请不要提交，提交前做好测试，修改后请写明修改内容
+
+  4、提交时删除system/config/install.lock.php文件（删除之后下次可直接安装，不删除无法安装）
+
