@@ -77,8 +77,88 @@ class ajax extends AWS_CONTROLLER
 		H::ajax_json_output(AWS_APP::RSM(null, 1, null));
 	}
 
+	// public function identify_internal()
+	// {
+	// 	$cookie_file = tempnam("./temp","cookie");//创建临时文件,用来存放cookie的
+	// 	$post_url="http://jw.zzu.edu.cn/scripts/stuinfo.dll/check";//登录地址,即NetWork里的 Request Url
+	// 	$post1 = "nianji=";
+	// 	$post2 = "&xuehao=";
+	// 	$post3 = "&mima=";
+	// 	$post4 = "&selec=http%3A%2F%2Fjw.zzu.edu.cn%2Fscripts%2Fstuinfo.dll%2Fcheck&%B5%C7%C2%BC=%B5%C7%C2%BC";
+	// 	echo "在这"
+	// 	$nianji = $_REQUEST['grade'];
+	// 	$xuehao = $_REQUEST['username'];
+	// 	$mima = $_REQUEST['password'];
+	// 	$post=$post1.$nianji.$post2.$xuehao.$post3.$mima.$post4; 
+
+	// 	$login=curl_init($post_url);//创建CURL对象
+	// 	curl_setopt($login,CURLOPT_HEADER,0);//设置不返回头部
+	// 	curl_setopt($login,CURLOPT_RETURNTRANSFER,1);//设置只返回信息而不输出
+	// 	curl_setopt($login,CURLOPT_POST,1);//设置提交方式为POST提交
+	// 	curl_setopt($login,CURLOPT_COOKIEJAR,$cookie_file);//把返回COOKIE文件放到临时文件,后面会用到
+	// 	curl_setopt($login,CURLOPT_POSTFIELDS,$post);//提交POST数据
+	// 	$content = curl_exec($login);//执行已经定义的设置
+	// 	$content=iconv('gb2312','utf-8//IGNORE',$content);
+	// 	curl_close($login);//关闭
+
+	// 	$count = preg_match("/form/", $content, $matchs);
+	// 	//$info =  preg_match("/font/", $content, $matchs);
+	// 	$cou = preg_match_all('/<font([\s\S]*?)<\/font/',$content,$str,PREG_SET_ORDER);
+	// 	// for($i = 0; $i < 6; $i++){
+	// 	// 	echo $str[$i][0];
+	// 	// 	echo "<p></p>";
+	// 	// }
+	// 	if($count == 1){
+	// 	    // echo "恭喜您，您已经通过验证！还等什么，现在就去登陆社区吧！！";
+	// 	    return 1;
+	// 	}else {
+	// 	    // echo "对不起，您没有通过验证！看看是不是学号或密码输错了呢？";
+	// 	    return -1;
+	// 	}
+	// 	// $cont=curl_init("http://jw.zzu.edu.cn/scripts/stuinfo.dll/check");//创建要登录成功后跳转的URL
+	// 	// //curl_setopt($cont,CURLOPT_HEADER,0);//设置不返回头部
+	// 	// curl_setopt($cont,CURLOPT_RETURNTRANSFER,0);//返回信息并显示
+	// 	// curl_setopt($cont,CURLOPT_COOKIEFILE,$cookie_file);//调用已经存在的COOKIE文件
+	// 	// $contens=curl_exec($cont);//执行已经定义的设置
+	// 	// curl_close($cont);
+	// }
+
 	public function register_process_action()
 	{
+		//
+		$cookie_file = tempnam("./temp","cookie");//创建临时文件,用来存放cookie的
+		$post_url="http://jw.zzu.edu.cn/scripts/stuinfo.dll/check";//登录地址,即NetWork里的 Request Url
+		$post1 = "nianji=";
+		$post2 = "&xuehao=";
+		$post3 = "&mima=";
+		$post4 = "&selec=http%3A%2F%2Fjw.zzu.edu.cn%2Fscripts%2Fstuinfo.dll%2Fcheck&%B5%C7%C2%BC=%B5%C7%C2%BC";
+	
+		$nianji = $_POST['grade'];
+		$xuehao = $_POST['user_name'];
+		$mima = $_POST['password'];
+			
+		$post=$post1.$nianji.$post2.$xuehao.$post3.$mima.$post4; 
+
+		$login=curl_init($post_url);//创建CURL对象
+		curl_setopt($login,CURLOPT_HEADER,0);//设置不返回头部
+		curl_setopt($login,CURLOPT_RETURNTRANSFER,1);//设置只返回信息而不输出
+		curl_setopt($login,CURLOPT_POST,1);//设置提交方式为POST提交
+		curl_setopt($login,CURLOPT_COOKIEJAR,$cookie_file);//把返回COOKIE文件放到临时文件,后面会用到
+		curl_setopt($login,CURLOPT_POSTFIELDS,$post);//提交POST数据
+		$content = curl_exec($login);//执行已经定义的设置
+		$content=iconv('gb2312','utf-8//IGNORE',$content);
+		curl_close($login);//关闭
+
+		$count = preg_match("/form/", $content, $matchs);
+		
+		// 身份验证添加处，留坑（验证策略：身份验证不通过在此跳转，不再继续执行）
+		// 
+		if($count != 1){
+			//header("refresh:3;url=http://localhost/UPLOAD/?/account/register/");
+			echo "密码不正确，请检查年级、学号和密码，注册失败....";
+			return 0;
+		}
+		
 		if (get_setting('register_type') == 'close')
 		{
 			H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('本站目前关闭注册')));
@@ -138,9 +218,6 @@ class ajax extends AWS_CONTROLLER
 			H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请填写正确的验证码')));
 		}
 
-		// 
-		// 身份验证添加处，留坑（验证策略：身份验证不通过在此跳转，不再继续执行）
-		// 
 
 		if (get_setting('ucenter_enabled') == 'Y')
 		{

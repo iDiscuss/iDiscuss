@@ -16,11 +16,11 @@
 define('G_COOKIE_DOMAIN','');
 
 // 定义 Cookies 前缀
-define('G_COOKIE_PREFIX','xka_');
+define('G_COOKIE_PREFIX','mai_');
 
 // 定义应用加密 KEY
-define('G_SECUKEY','ahniaqccltot');
-define('G_COOKIE_HASH_KEY', 'mvrgqnuccduhjja');
+define('G_SECUKEY','wwvhqnkxedas');
+define('G_COOKIE_HASH_KEY', 'nypqhsldookexiv');
 
 define('G_INDEX_SCRIPT', '?/');
 
