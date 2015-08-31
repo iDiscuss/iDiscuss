@@ -22,13 +22,35 @@
 
 				<ul>
 					<li>
-						<input type="text" class="form-control" name="user_name" placeholder="<?php _e('用户名'); ?>" value="<?php echo htmlspecialchars($_GET['user_name']); ?>" />
+	                    <p>年级:
+	                    <select size="1" name="grade" style="height:20px;">
+	                    <option selected="">2015</option>
+	                    <option>2014</option>
+	                    <option>2013</option>
+	                    <option>2012</option>
+	                    <option>2011</option>
+	                    <option>2010</option>
+	                    <option>2009</option>
+	                    <option>2008</option>
+	                    <option>2007</option>
+	                    <option>2006</option>
+	                    <option>2005</option>
+	                    <option>2004</option>
+	                    <option>2003</option>
+	                    <option>2002</option>
+	                    <option>2001</option>
+	                    <option>2000</option>
+	                    </select>
+	                    </p>
+                	</li>
+					<li>
+						<input type="text" class="form-control" name="user_name" placeholder="<?php _e('学号'); ?>" value="<?php echo htmlspecialchars($_GET['user_name']); ?>" />
 					</li>
 					<li>
 						<input type="text" class="form-control" name="email" placeholder="<?php _e('邮箱'); ?>" value="<?php echo htmlspecialchars(urldecode($_GET['email'])); ?>" />
 					</li>
 					<li>
-						<input type="password" class="form-control" name="password" placeholder="<?php _e('密码'); ?>" />
+						<input type="password" class="form-control" name="password" placeholder="<?php _e('学号密码'); ?>" />
 					</li>
 					<?php if (get_setting('register_seccode') == 'Y') { ?>
 					<li class="captcha">
@@ -42,6 +64,9 @@
 				</ul>
 			</form>
 		</div>
+
+
+
 	</div>
 </div>
 <!-- end 内容 -->

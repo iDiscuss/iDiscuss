@@ -288,4 +288,5 @@ class main extends AWS_CONTROLLER
 
 		TPL::output('account/valid_approval');
 	}
+
 }

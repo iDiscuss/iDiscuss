@@ -1,0 +1,409 @@
+/*
+Name: Toby Powell
+URL: http://www.toby-powell.co.uk
+Description:
+Version: 1
+Author: Toby Powell
+Author URL: http://www.toby-powell.co.uk
+*/
+
+* {
+	margin:0;
+	padding:0;
+}
+
+img,div, h1, a, ul, li {
+	behavior:url(iepngfix.htc);
+
+}
+
+h1,h2,h3,h4,h5,h6,p,pre,blockquote,form,input,ul,ol,li,blockquote,fieldset,address,table {
+	margin:5px 0;
+}
+
+fieldset {
+	padding:10px;
+}
+
+body {
+	font-size:62.5%;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background:url(images/paperBg.jpg) repeat;
+	color:#4b4b4b;
+/* 	text-align:justify; */
+/* 	word-spacing:-1px; */
+}
+
+h1 {
+	color:#000000;
+}
+
+h2 {
+	color:#000000;
+	font-size:1.6em;
+}
+
+p {
+	font-size:1.4em;
+	line-height:1.6em;
+	margin:0;
+	text-indent:1.4em;
+}
+
+img {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+}
+
+a
+{
+  outline: none;
+}
+
+
+#wrapper {
+	background:url(images/bar.jpg) repeat-x;
+	padding:50px 0 0;
+	min-width:1000px;
+}
+
+#contentWrapper {
+	width:945px;
+	margin:0 auto;
+	background:url(images/head.png) no-repeat 0 3%;
+	min-height:768px;
+
+}
+
+
+
+ul#navigation {
+	background:url(images/navBack.png) no-repeat;
+	height:18px;
+	width:460px;
+	float:right;
+	text-align:center;
+	list-style-type:none;
+	padding:10px 0 9px 0px;
+	margin:0;
+	text-indent:-9999px;
+
+}
+
+#navigation li {
+	float:left;
+	margin:0 5px;
+	width:100px;
+	height:15px;
+}
+
+
+#navigation #portfolio{
+	margin-right:10px;
+}
+
+#navigation #modeling{
+	margin-right:15px;
+}
+
+/*NAV BACKGROUND IMAGES*/
+
+#navigation #portfolio a:link,#navigation #portfolio a:visited {
+	background:url(images/nav/port1.png) no-repeat;
+
+}
+
+#navigation #portfolio a:hover {
+	background:url(images/nav/port2.png) no-repeat;
+}
+
+#navigation #modeling a:link,#navigation #modeling a:visited {
+	background:url(images/nav/3d1.png) no-repeat;
+}
+
+#navigation #modeling a:hover {
+	background:url(images/nav/3d2.png) no-repeat;
+}
+
+#navigation #contact a:link,#navigation #contact a:visited {
+	background:url(images/nav/contact1.png) no-repeat;
+	margin-top:1px;
+}
+
+#navigation #contact a:hover {
+	background:url(images/nav/contact2.png) no-repeat;
+}
+
+#navigation #blog a:link,#navigation #blog a:visited {
+	background:url(images/nav/blog1.png) no-repeat;
+}
+
+#navigation #blog a:hover {
+	background:url(images/nav/blog2.png) no-repeat;
+}
+
+#navigation a:link, #navigation a:visited {
+	padding:5px ;
+	text-indent:-9999px;
+	display:block;
+	width:90px;
+}
+
+form#contactForm {
+	clear:both;
+	width:450px;
+	float:right;
+	list-style-type:none;
+	margin:2px 0;
+	padding-left:10px;
+}
+
+form#contactForm p {
+	text-indent:0;
+	display:none;
+}
+
+#logo {
+	width:480px;
+	float:left;
+	margin:0 ;
+	padding:0;
+	min-height:100px;
+	background:url(images/logo.png) no-repeat 0 0;
+	text-indent:-9999px;
+
+}
+
+#rightColumn {
+	width:460px;
+	float:left;
+	margin:0;
+	padding:0;
+
+}
+
+#aboutText {
+	background:url(images/contact.png) no-repeat 0 0;
+	padding:1px;
+
+}
+
+#aboutText p{
+	width:450px;
+}
+
+#aboutText h1#aboutme {
+	clear:both;
+	width:450px;
+	font-size:1.6em;
+	line-height:1.2em;
+}
+
+#aboutText h1#about {
+	margin:0;
+	margin-top:140px;
+	height:61px;
+	width:183px;
+	background:url(images/about.png) no-repeat;
+	text-indent:-9999px;
+	float:left;
+}
+
+#aboutText img {
+	float:right;
+	margin-top:60px;
+
+}
+
+
+
+/*TWITTER ICONS ETC*/
+#follow {
+	list-style-type:none;
+}
+
+#follow li {
+	float:left;
+	margin:5px 2px;
+	height:31px;
+	padding:0;
+}
+
+#follow #twitter a:link,#follow #twitter a:visited {
+	background:url(images/icons/twitter1.png) no-repeat;
+	width:37px;
+	height:31px;
+}
+
+#follow #twitter a:hover {
+	background:url(images/icons/twitter2.png) no-repeat;
+}
+
+#follow #delicious a:link,#follow #delicious a:visited {
+	background:url(images/icons/del1.png) no-repeat;
+	width:26px;
+	height:28px;
+}
+
+#follow #delicious a:hover {
+	background:url(images/icons/del2.png) no-repeat;
+}
+
+#follow #flickr a:link,#follow #flickr a:visited {
+	background:url(images/icons/flickr1.png) no-repeat;
+	width:37px;
+	height:38px;
+}
+
+#follow #flickr a:hover {
+	background:url(images/icons/flickr2.png) no-repeat;
+}
+
+#follow #wordpress a:link,#follow #wordpress a:visited {
+	background:url(images/icons/word1.png) no-repeat;
+	width:31px;
+	height:31px;
+}
+
+#follow #wordpress a:hover {
+	background:url(images/icons/word2.png) no-repeat;
+}
+
+#follow a:link,#follow a:visited {
+	padding:5px 0;
+	margin:0;
+	text-indent:-9999px;
+	display:block;
+}
+
+#valid a:link, #valid a:visited {
+	text-decoration:none;
+	font-size:1em;
+	text-indent:0;
+	color:#4b4b4b;
+	width:300px;
+	word-spacing:0;
+}
+
+#valid a:hover {
+	text-decoration:underline;
+}
+
+/*PORTFOLIO SECTION*/
+
+#myAnchor{
+}
+
+#portfolioSection {
+	clear:both;
+	padding-top:30px;
+}
+
+
+ ul.section {
+	list-style-type:none;
+	height:360px;
+	background:url(images/portDiv.png) no-repeat;
+	padding-top:50px;
+
+}
+
+ul.portDiv{
+	background:none;
+	list-style-type:none;
+	height:360px;
+}
+
+
+
+.section li, .portDiv li{
+	width:465px;
+	float:left;
+}
+
+.section p, .portDiv p{
+	text-indent:0;
+	width:450px;
+	margin:10px 0 20px 0;
+}
+
+.section img, .portDiv img{
+	border:2px solid #888;
+	margin-bottom:5px;
+	margin-left:12px;
+}
+
+ul.section 	li.pic a, ul.portDiv li.pic a{
+		float:right;
+
+}
+
+
+#footer{
+	background:url(images/portDiv.png) no-repeat;
+	padding:30px 0 0 0;
+	margin-bottom:20px;
+}
+
+#footer p{
+	text-indent:0;
+}
+
+#footer a{
+	font-size:0.9em;
+	font-weight:normal;
+	color:#4b4b4b;
+	margin:0 10px;
+}
+
+#footer #footervalid{
+	margin-left:0;
+}
+
+#twitter_div{
+	margin-top:-20px;
+	margin-left:10px;
+	width:300px;
+}
+
+#twitter_div ul{
+	list-style-type:none;
+	font-size:1.1em;
+}
+
+#twitter_div li{
+	margin:0;
+
+}
+
+
+/*THANKS PAGE*/
+
+
+#thankspage img{
+	margin-right:20px;
+}
+
+p#back{
+	margin-left:20px;
+	width:420px;
+	text-indent:0;
+}
+
+.clear {
+	clear:both;
+}
+
+a:link, a:visited{
+	color:#bf154a;
+	font-size:1.1em;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+a:hover{
+	color:#4b4b4b;
+	text-decoration:underline;
+}
